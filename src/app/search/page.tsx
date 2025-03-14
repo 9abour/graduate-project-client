@@ -15,9 +15,10 @@ import TicketCard from '@/components/search/TicketCard';
 import { useQuery } from '@tanstack/react-query';
 import { getTickets } from '@/api/tickets/index.api';
 import { Ticket } from '@/types/ticket';
+import { useSearchParams } from 'next/navigation';
 
 const page = () => {
-  const initialSearchParams = new URLSearchParams(window.location.search);
+  const initialSearchParams = useSearchParams();
 
   const [departureDate, setDepartureDate] = React.useState<Date>();
   const [arrivalDate, setArrivalDate] = React.useState<Date>();

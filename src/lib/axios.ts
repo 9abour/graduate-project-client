@@ -2,7 +2,8 @@ import axios from 'axios';
 import { toast } from 'sonner';
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-const token = window.localStorage.getItem('token');
+const token =
+  typeof window !== 'undefined' ? window.localStorage.getItem('token') : null;
 
 const api = axios.create({
   baseURL,
