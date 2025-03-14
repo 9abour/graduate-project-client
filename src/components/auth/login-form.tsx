@@ -1,4 +1,3 @@
-// components/auth/login-form.tsx
 'use client';
 
 import { useState } from 'react';
@@ -105,7 +104,7 @@ export function LoginForm() {
         <p className="text-sm text-muted-foreground">
           Don&apos;t have an account?{' '}
           <Link
-            href="/register"
+            href="/auth/register"
             className="text-primary underline-offset-4 hover:underline"
           >
             Register

@@ -3,9 +3,7 @@ import { PlaneTakeoff, PlaneLanding } from 'lucide-react';
 import { format } from 'date-fns';
 import { IoAirplane } from 'react-icons/io5';
 import { MdOutlineWheelchairPickup } from 'react-icons/md';
-import { toast } from 'sonner';
 import { Ticket } from '@/types/ticket';
-import { Booking } from '@/types/booking';
 
 interface BookingResponse {
   _id: string;
@@ -13,7 +11,6 @@ interface BookingResponse {
   ticketId: Ticket;
   bookingDate: string;
   numberOfSeats: number;
-  isCancelled: boolean;
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -24,18 +21,7 @@ const BookingCard = ({
 }: {
   bookingResponse: BookingResponse;
 }) => {
-  const { ticketId, bookingDate, numberOfSeats, isCancelled } = bookingResponse;
-
-  const handleCancel = async () => {
-    try {
-      // Implement cancel booking API call here
-      // await cancelBooking(id);
-      toast.success('Booking cancelled successfully');
-    } catch (error) {
-      console.error(error);
-      toast.error('Failed to cancel booking');
-    }
-  };
+  const { ticketId, bookingDate, numberOfSeats } = bookingResponse;
 
   return (
     <div className="relative min-h-[170px] p-8 rounded-lg navbar-shadow border border-gray-200 hover:shadow-md transition-shadow overflow-hidden">

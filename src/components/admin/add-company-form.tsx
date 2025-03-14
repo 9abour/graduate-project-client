@@ -18,7 +18,6 @@ import { useForm } from 'react-hook-form';
 import { useAddCompany } from '@/components/admin/hooks/useAddCompany';
 import Link from 'next/link';
 
-// Define the schema for the company registration form
 const companySchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
   email: z.string().email({ message: 'Please enter a valid email address' }),

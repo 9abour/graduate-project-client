@@ -30,7 +30,6 @@ export default function TicketsStats() {
     ticketsByCompany,
   } = ticketsData;
 
-  // Calculate the percentage of sold-out tickets
   const soldOutPercentage = (soldOutTickets / totalTickets) * 100;
 
   return (

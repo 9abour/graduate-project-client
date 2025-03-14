@@ -28,7 +28,6 @@ export default function UsersStats() {
     averageBookingsPerUser,
   } = usersData;
 
-  // Calculate the percentage of travelers, admins, and companies
   const travelersPercentage = (travelers / totalUsers) * 100;
   const adminsPercentage = (admins / totalUsers) * 100;
   const companiesPercentage = (companies / totalUsers) * 100;

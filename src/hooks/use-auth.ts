@@ -8,7 +8,6 @@ import { toast } from 'sonner';
 
 export function useLogin() {
   const { setAuth } = useAuthStore();
-  // const { toast } = useToast();
   const router = useRouter();
 
   return useMutation({
@@ -28,18 +27,10 @@ export function useLogin() {
         router.push('/company/my-tickets');
       }
     },
-    onError: (error: any) => {
-      // toast({
-      //   variant: 'destructive',
-      //   title: 'Login failed',
-      //   description: error.response?.data?.message || 'Please check your credentials and try again',
-      // });
-    },
   });
 }
 
 export function useRegister() {
-  // const { toast } = useToast();
   const router = useRouter();
 
   return useMutation({
@@ -48,20 +39,7 @@ export function useRegister() {
       return response.data;
     },
     onSuccess: () => {
-      // toast({
-      //   title: 'Registration successful',
-      //   description: 'Please log in with your new account',
-      // });
       router.push('/auth/login');
-    },
-    onError: (error: any) => {
-      // toast({
-      //   variant: 'destructive',
-      //   title: 'Registration failed',
-      //   description:
-      //     error.response?.data?.message ||
-      //     'Please check your information and try again',
-      // });
     },
   });
 }
@@ -70,17 +48,12 @@ export function useLogout() {
   const { clearAuth } = useAuthStore();
   const queryClient = useQueryClient();
   const router = useRouter();
-  // const { toast } = useToast();
 
   return () => {
     clearAuth();
     localStorage.removeItem('token');
+    localStorage.removeItem('auth-storage');
     queryClient.clear();
-
-    // toast({
-    //   title: 'Logged out',
-    //   description: 'You have been successfully logged out',
-    // });
 
     router.push('/');
   };

@@ -9,7 +9,7 @@ import BookingButton from '@/components/search/BookingButton';
 import { useQueryClient } from '@tanstack/react-query';
 
 interface TicketCardProps {
-  id: string;
+  _id: string;
   from: string;
   to: string;
   departureTime: string;
@@ -20,7 +20,7 @@ interface TicketCardProps {
 }
 
 const TicketCard = ({
-  id,
+  _id,
   from,
   to,
   departureTime,
@@ -33,7 +33,7 @@ const TicketCard = ({
 
   const handleClick = async () => {
     try {
-      await bookTicket(id);
+      await bookTicket(_id);
       queryClient.invalidateQueries({ queryKey: ['myBookings'] });
       toast.success('Ticket booked successfully');
     } catch (error) {

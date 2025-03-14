@@ -19,8 +19,6 @@ import { format } from 'date-fns';
 import { useRouter } from 'next/navigation';
 
 const HeroForm = () => {
-  const [departureDate, setDepartureDate] = React.useState<Date>();
-  const [arrivalDate, setArrivalDate] = React.useState<Date>();
   const [searchParams, setSearchParams] = React.useState<
     Record<string, string>
   >({
@@ -110,8 +108,8 @@ const HeroForm = () => {
                   </div>
 
                   <span className="mx-2">
-                    {departureDate
-                      ? format(departureDate, 'PPP')
+                    {searchParams.departureDate
+                      ? format(searchParams.departureDate, 'PPP')
                       : 'Pick a date'}
                   </span>
                 </button>
@@ -120,8 +118,14 @@ const HeroForm = () => {
             <PopoverContent className="w-auto p-0" align="start">
               <Calendar
                 mode="single"
-                selected={departureDate}
-                onSelect={setDepartureDate}
+                selected={new Date(searchParams.departureDate || '')}
+                onSelect={(date) =>
+                  date &&
+                  setSearchParams({
+                    ...searchParams,
+                    departureDate: String(date),
+                  })
+                }
                 initialFocus
               />
             </PopoverContent>
@@ -138,7 +142,9 @@ const HeroForm = () => {
                   </div>
 
                   <span className="mx-2">
-                    {arrivalDate ? format(arrivalDate, 'PPP') : 'Pick a date'}
+                    {searchParams.arrivalDate
+                      ? format(searchParams.arrivalDate, 'PPP')
+                      : 'Pick a date'}
                   </span>
                 </button>
               </div>
@@ -146,8 +152,14 @@ const HeroForm = () => {
             <PopoverContent className="w-auto p-0" align="start">
               <Calendar
                 mode="single"
-                selected={arrivalDate}
-                onSelect={setArrivalDate}
+                selected={new Date(searchParams.arrivalDate || '')}
+                onSelect={(date) =>
+                  date &&
+                  setSearchParams({
+                    ...searchParams,
+                    arrivalDate: String(date),
+                  })
+                }
                 initialFocus
               />
             </PopoverContent>

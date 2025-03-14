@@ -47,10 +47,10 @@ const page = () => {
         ) : bookings?.length ? (
           <div className="mt-8">
             {bookings.map((booking) => (
-              <>
-                <BookingCard key={booking._id} bookingResponse={booking} />
+              <React.Fragment key={booking._id}>
+                <BookingCard bookingResponse={booking} />
                 <hr className="mx-8 border-gray-200 my-8 last:hidden" />
-              </>
+              </React.Fragment>
             ))}
           </div>
         ) : (

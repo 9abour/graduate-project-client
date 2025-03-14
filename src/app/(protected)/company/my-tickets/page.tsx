@@ -39,7 +39,6 @@ const CompanyTicketsPage = () => {
     travelCompany: user?.name || '',
   });
 
-  // Fetch tickets created by the company
   const {
     data: tickets,
     isLoading: isTicketsLoading,
@@ -48,7 +47,6 @@ const CompanyTicketsPage = () => {
     queryFn: () => getCompanyTickets(user?.name || ''),
   });
 
-  // Mutation for creating a new ticket
   const mutation = useMutation({
     mutationFn: createTicket,
     onSuccess: () => {
@@ -175,10 +173,10 @@ const CompanyTicketsPage = () => {
           ) : tickets?.length ? (
             <div className="mt-8">
               {tickets.map((ticket) => (
-                <>
-                  <TicketCard key={ticket._id} {...ticket} id={ticket._id} />
+                <React.Fragment key={ticket._id}>
+                  <TicketCard {...ticket} />
                   <hr className="mx-8 border-gray-200 my-8 last:hidden" />
-                </>
+                </React.Fragment>
               ))}
             </div>
           ) : (

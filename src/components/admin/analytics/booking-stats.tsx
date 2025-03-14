@@ -35,7 +35,6 @@ const stats = {
 };
 
 export default function BookingStats() {
-  // Transform bookingsByDay into an array for the chart
   const chartData = Object.entries(stats.bookingsByDay).map(([date, data]) => ({
     date,
     count: data.count,

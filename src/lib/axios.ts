@@ -33,13 +33,13 @@ api.interceptors.response.use(
     toast(error.response?.data?.message);
 
     // If 401 Unauthorized and not already retrying
-    // if (error.response?.status === 401 && !originalRequest._retry) {
-    //   // Redirect to login
-    //   if (typeof window !== 'undefined') {
-    //     localStorage.removeItem('token');
-    //     window.location.href = '/login';
-    //   }
-    // }
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      // Redirect to login
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('token');
+        window.location.href = '/auth/login';
+      }
+    }
 
     return Promise.reject(error);
   }

@@ -1,7 +1,7 @@
 'use client';
 
 import PageLayout from '@/components/layout/page-layout';
-import { DollarSign, PlaneLanding, PlaneTakeoff } from 'lucide-react';
+import { DollarSign, Loader2, PlaneLanding, PlaneTakeoff } from 'lucide-react';
 import React from 'react';
 import { cn } from '@/lib/cn';
 import FlightBookingHeader from '@/components/search/FlightBookingHeader';
@@ -14,14 +14,13 @@ import TicketCard from '@/components/search/TicketCard';
 import { useQuery } from '@tanstack/react-query';
 import { getTickets } from '@/api/tickets/index.api';
 import { Ticket } from '@/types/ticket';
+import { useRouter } from 'next/navigation';
 
 const page = () => {
   const initialSearchParams = new URLSearchParams(
     typeof window !== 'undefined' ? window.location.search : ''
   );
 
-  const [departureDate, setDepartureDate] = React.useState<Date>();
-  const [arrivalDate, setArrivalDate] = React.useState<Date>();
   const [searchParams, setSearchParams] = React.useState<
     Record<string, string>
   >({
@@ -32,19 +31,35 @@ const page = () => {
     departureDate: initialSearchParams.get('departureDate') || '',
     arrivalDate: initialSearchParams.get('arrivalDate') || '',
   });
+  const { push } = useRouter();
 
   const {
     data: tickets,
     refetch: refetchTickets,
     isRefetching: isLoading,
+    isLoading: isTicketsLoading,
   }: {
     data: Ticket[] | undefined;
     refetch: () => void;
     isRefetching: boolean;
+    isLoading: boolean;
   } = useQuery({
-    queryKey: ['tickets'],
+    queryKey: ['tickets', searchParams],
     queryFn: () => getTickets(searchParams),
   });
+
+  const handleReset = () => {
+    setSearchParams({
+      from: '',
+      to: '',
+      minPrice: '',
+      maxPrice: '',
+      departureDate: '',
+      arrivalDate: '',
+    });
+
+    push('/search');
+  };
 
   const handleReverseLocations = () => {
     setSearchParams({
@@ -62,7 +77,14 @@ const page = () => {
 
       <div className="p-6 mt-4">
         <div className="container p-4 rounded-lg navbar-shadow bg-white">
-          <FlightBookingHeader />
+          <div className="flex items-center justify-between">
+            <FlightBookingHeader />
+
+            <button onClick={handleReset} className="text-gray-500">
+              Reset
+            </button>
+          </div>
+
           <div className="grid gap-4 rounded-2xl text-black mt-4">
             <div className={cn('relative flex flex-col md:flex-row gap-4')}>
               <LocationInput
@@ -90,74 +112,90 @@ const page = () => {
             <div className="flex flex-col md:flex-row items-center gap-4">
               <DatePicker
                 label="Departure Date"
-                date={departureDate}
-                onSelect={(date) => {
-                  setDepartureDate(date);
-
-                  if (!date) return;
-
+                date={
+                  searchParams.departureDate
+                    ? new Date(searchParams.departureDate)
+                    : undefined
+                }
+                onSelect={(date) =>
+                  date &&
                   setSearchParams({
                     ...searchParams,
                     departureDate: String(date),
-                  });
-                }}
+                  })
+                }
               />
               <DatePicker
                 label="Arrival Time"
-                date={arrivalDate}
-                onSelect={(date) => {
-                  setArrivalDate(date);
-
-                  if (!date) return;
-
+                date={
+                  searchParams.arrivalDate
+                    ? new Date(searchParams.arrivalDate)
+                    : undefined
+                }
+                onSelect={(date) =>
+                  date &&
                   setSearchParams({
                     ...searchParams,
                     arrivalDate: String(date),
-                  });
-                }}
+                  })
+                }
               />
 
-              <PriceInput
-                label="Min Price"
-                placeholder="0"
-                icon={<DollarSign className="text-orange-500" />}
-                id="minPrice"
-                onChange={(e) => {
-                  setSearchParams({
-                    ...searchParams,
-                    minPrice: e.target.value,
-                  });
-                }}
-                value={searchParams.minPrice}
-              />
-              <PriceInput
-                label="Max Price"
-                placeholder="0"
-                icon={<DollarSign className="text-red-500" />}
-                id="maxPrice"
-                onChange={(e) => {
-                  setSearchParams({
-                    ...searchParams,
-                    maxPrice: e.target.value,
-                  });
-                }}
-                value={searchParams.maxPrice}
-              />
+              <div className="w-full flex items-center gap-4">
+                <PriceInput
+                  label="Min Price"
+                  placeholder="0"
+                  icon={<DollarSign className="text-orange-500" />}
+                  id="minPrice"
+                  onChange={(e) => {
+                    setSearchParams({
+                      ...searchParams,
+                      minPrice: e.target.value,
+                    });
+                  }}
+                  value={searchParams.minPrice}
+                />
+                <PriceInput
+                  label="Max Price"
+                  placeholder="0"
+                  icon={<DollarSign className="text-red-500" />}
+                  id="maxPrice"
+                  onChange={(e) => {
+                    setSearchParams({
+                      ...searchParams,
+                      maxPrice: e.target.value,
+                    });
+                  }}
+                  value={searchParams.maxPrice}
+                />
+              </div>
               <SearchButton onClick={refetchTickets} isLoading={isLoading} />
             </div>
           </div>
         </div>
 
-        {tickets?.length ? (
-          <div className="container !px-0 mt-12">
+        {/* List of tickets */}
+        {isTicketsLoading ? (
+          <div className="container flex justify-center">
+            <Loader2 className="h-8 w-8 animate-spin" />
+          </div>
+        ) : tickets?.length ? (
+          <div className="container mt-8">
             {tickets.map((ticket) => (
-              <>
-                <TicketCard key={ticket._id} {...ticket} id={ticket._id} />
-                <hr className="mx-8 border-gray-200 my-8 last:hidden" />
-              </>
+              <React.Fragment key={ticket._id}>
+                <TicketCard {...ticket} />
+                <hr className="container mx-8 border-gray-200 my-8 last:hidden" />
+              </React.Fragment>
             ))}
           </div>
-        ) : null}
+        ) : (
+          <>
+            <hr className="container mx-8 border-gray-200 my-8 last:hidden" />
+            <p className="container text-center text-neutral-500">
+              No tickets found.
+            </p>
+          </>
+        )}
       </div>
     </PageLayout>
   );

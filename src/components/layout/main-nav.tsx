@@ -82,14 +82,25 @@ export function MainNav() {
       ];
     }
 
-    return [
-      ...commonRoutes,
-      {
-        href: '/my-bookings',
-        label: 'My Bookings',
-        active: pathname === '/my-bookings',
-      },
-    ];
+    if (isAuthenticated) {
+      return [
+        ...commonRoutes,
+        {
+          href: '/my-bookings',
+          label: 'My Bookings',
+          active: pathname === '/my-bookings',
+        },
+      ];
+    } else {
+      return [
+        ...commonRoutes,
+        {
+          href: '/auth/login',
+          label: 'Login',
+          active: pathname === '/auth/login',
+        },
+      ];
+    }
   }, [pathname, isAuthenticated, isAdmin]);
 
   return (
