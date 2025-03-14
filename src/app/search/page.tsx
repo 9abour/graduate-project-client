@@ -1,7 +1,6 @@
 'use client';
 
 import PageLayout from '@/components/layout/page-layout';
-
 import { DollarSign, PlaneLanding, PlaneTakeoff } from 'lucide-react';
 import React from 'react';
 import { cn } from '@/lib/cn';
@@ -15,10 +14,11 @@ import TicketCard from '@/components/search/TicketCard';
 import { useQuery } from '@tanstack/react-query';
 import { getTickets } from '@/api/tickets/index.api';
 import { Ticket } from '@/types/ticket';
-import { useSearchParams } from 'next/navigation';
 
 const page = () => {
-  const initialSearchParams = useSearchParams();
+  const initialSearchParams = new URLSearchParams(
+    typeof window !== 'undefined' ? window.location.search : ''
+  );
 
   const [departureDate, setDepartureDate] = React.useState<Date>();
   const [arrivalDate, setArrivalDate] = React.useState<Date>();
