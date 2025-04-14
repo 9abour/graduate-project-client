@@ -2,6 +2,7 @@ import { Providers } from './providers';
 import './globals.css';
 import { MainNav } from '@/components/layout/main-nav';
 import { Toaster } from '@/components/ui/sonner';
+import Footer from '@/components/layout/footer';
 
 export default function RootLayout({
   children,
@@ -14,6 +15,7 @@ export default function RootLayout({
         <Providers>
           <MainNav />
           {children}
+          <Footer />
           <Toaster />
         </Providers>
       </body>

@@ -36,7 +36,7 @@ api.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       // Redirect to login
       if (typeof window !== 'undefined') {
-        localStorage.removeItem('token');
+        localStorage.removeItem('auth-storage');
         window.location.href = '/auth/login';
       }
     }

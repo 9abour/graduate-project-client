@@ -6,7 +6,7 @@ import image3 from '@public/AI-newsletter-image-IMG_9688.webp';
 
 const Features = () => {
   return (
-    <section className="mt-12">
+    <section className="mt-8">
       <div className="container">
         <h1 className="main-title-white">Features</h1>
       </div>

@@ -12,7 +12,7 @@ const page = () => {
 
       {/* Button to export */}
       <div className="relative container flex w-full justify-end p-8">
-        <ExportButton path={`analytics/ticket-stats`} />
+        <ExportButton path={`analytics/export-tickets`} />
       </div>
 
       <TicketsStats />

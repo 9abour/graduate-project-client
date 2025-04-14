@@ -2,7 +2,7 @@
 
 import PageLayout from '@/components/layout/page-layout';
 import { DollarSign, Loader2, PlaneLanding, PlaneTakeoff } from 'lucide-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { cn } from '@/lib/cn';
 import FlightBookingHeader from '@/components/search/FlightBookingHeader';
 import LocationInput from '@/components/search/LocationInput';
@@ -14,7 +14,6 @@ import TicketCard from '@/components/search/TicketCard';
 import { useQuery } from '@tanstack/react-query';
 import { getTickets } from '@/api/tickets/index.api';
 import { Ticket } from '@/types/ticket';
-import { useRouter } from 'next/navigation';
 
 const page = () => {
   const initialSearchParams = new URLSearchParams(
@@ -31,7 +30,6 @@ const page = () => {
     departureDate: initialSearchParams.get('departureDate') || '',
     arrivalDate: initialSearchParams.get('arrivalDate') || '',
   });
-  const { push } = useRouter();
 
   const {
     data: tickets,
@@ -44,11 +42,11 @@ const page = () => {
     isRefetching: boolean;
     isLoading: boolean;
   } = useQuery({
-    queryKey: ['tickets', searchParams],
+    queryKey: ['tickets'],
     queryFn: () => getTickets(searchParams),
   });
 
-  const handleReset = () => {
+  const handleReset = async () => {
     setSearchParams({
       from: '',
       to: '',
@@ -57,8 +55,6 @@ const page = () => {
       departureDate: '',
       arrivalDate: '',
     });
-
-    push('/search');
   };
 
   const handleReverseLocations = () => {
@@ -68,6 +64,12 @@ const page = () => {
       to: searchParams.from,
     });
   };
+
+  useEffect(() => {
+    if (!Object.values(searchParams).some(Boolean as unknown as any)) {
+      refetchTickets();
+    }
+  }, [searchParams, refetchTickets]);
 
   return (
     <PageLayout>
@@ -176,7 +178,7 @@ const page = () => {
 
         {/* List of tickets */}
         {isTicketsLoading ? (
-          <div className="container flex justify-center">
+          <div className="container flex justify-center mt-8">
             <Loader2 className="h-8 w-8 animate-spin" />
           </div>
         ) : tickets?.length ? (
@@ -190,7 +192,7 @@ const page = () => {
           </div>
         ) : (
           <>
-            <hr className="container mx-8 border-gray-200 my-8 last:hidden" />
+            <hr className="container mx-8 border-gray-200 my-6 last:hidden" />
             <p className="container text-center text-neutral-500">
               No tickets found.
             </p>

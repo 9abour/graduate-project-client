@@ -35,7 +35,7 @@ const page = () => {
         <h1 className="main-title-white">My Bookings</h1>
       </div>
 
-      <div className="container !px-0">
+      <div className="container !px-0 mb-8">
         {/* List of tickets */}
         {isBookingsLoading ? (
           <div className="flex justify-center">
