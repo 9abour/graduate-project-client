@@ -16,7 +16,6 @@ import {
 } from 'lucide-react';
 import React from 'react';
 import { format } from 'date-fns';
-import { useRouter } from 'next/navigation';
 
 const HeroForm = () => {
   const [searchParams, setSearchParams] = React.useState<
@@ -43,7 +42,11 @@ const HeroForm = () => {
       Object.entries(searchParams).filter(([_, value]) => value)
     );
 
-    window.location.href = `/search?${new URLSearchParams(validSearchParams)}`;
+    if (typeof window !== 'undefined') {
+      window.location.href = `/search?${new URLSearchParams(
+        validSearchParams
+      )}`;
+    }
   };
 
   return (
