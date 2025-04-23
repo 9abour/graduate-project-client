@@ -12,7 +12,11 @@ declare module '@react-three/fiber' {
   }
 }
 
-extend({ ThreeGlobe });
+const extendThreeGlobe = () => {
+  if (typeof window !== 'undefined') {
+    extend({ ThreeGlobe });
+  }
+};
 
 const RING_PROPAGATION_SPEED = 3;
 const aspect = 1.2;
@@ -245,6 +249,10 @@ export function WebGLRendererConfig() {
 }
 
 export function World(props: WorldProps) {
+  useEffect(() => {
+    extendThreeGlobe();
+  }, []);
+
   const { globeConfig } = props;
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);
