@@ -86,7 +86,7 @@ const CompanyTicketsPage = () => {
         <h1 className="main-title-white">Create Tickets</h1>
       </div>
 
-      <div className="p-6 mt-4">
+      <div className="p-4 sm:p-6 mt-4">
         <div className="container p-4 rounded-lg navbar-shadow">
           <div className="flex items-center gap-2 text-[#000300]">
             <ImTicket />

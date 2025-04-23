@@ -45,7 +45,7 @@ const page = () => {
             <Loader2 className="h-8 w-8 animate-spin" />
           </div>
         ) : bookings?.length ? (
-          <div className="mt-8">
+          <div className="p-4 sm:p-6 mt-8">
             {bookings.map((booking) => (
               <React.Fragment key={booking._id}>
                 <BookingCard bookingResponse={booking} />

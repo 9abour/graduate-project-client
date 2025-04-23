@@ -77,7 +77,7 @@ const page = () => {
         <h1 className="main-title-white">Search Tickets</h1>
       </div>
 
-      <div className="p-6 mt-4">
+      <div className="p-4 sm:p-6 mt-4">
         <div className="container p-4 rounded-lg navbar-shadow bg-white">
           <div className="flex items-center justify-between">
             <FlightBookingHeader />
@@ -182,7 +182,7 @@ const page = () => {
             <Loader2 className="h-8 w-8 animate-spin" />
           </div>
         ) : tickets?.length ? (
-          <div className="container mt-8">
+          <div className="container !px-0 mt-8">
             {tickets.map((ticket) => (
               <React.Fragment key={ticket._id}>
                 <TicketCard {...ticket} />

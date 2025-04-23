@@ -31,6 +31,12 @@ export function MainNav() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  React.useEffect(() => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  }, [pathname]);
+
   const routes = React.useMemo(() => {
     const commonRoutes = [
       {

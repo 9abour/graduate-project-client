@@ -38,7 +38,7 @@ const BookingCard = ({
               </div>
             </div>
             {/* Booking Date and Cancel Button */}
-            <div className="flex w-2/4 items-center justify-end gap-1">
+            <div className="flex w-2/4 items-center justify-end flex-col sm:flex-row gap-1">
               <span className="text-sm text-gray-500">Booking Date:</span>
               <span className="text-md font-semibold">
                 {format(new Date(bookingDate), 'PP')}
@@ -46,8 +46,8 @@ const BookingCard = ({
             </div>
           </div>
 
-          <div className="w-full mt-4 flex items-center justify-between gap-12">
-            <div className="w-3/12 flex items-center flex-col gap-2">
+          <div className="w-full mt-4 flex items-center justify-between flex-col sm:flex-row gap-12">
+            <div className="w-3/12 flex items-center flex-col gap-2 text-center">
               <PlaneTakeoff className="w-4 h-4 text-blue-500" />
               <div className="flex flex-col items-center">
                 <span className="text-sm">Departure</span>
@@ -58,8 +58,9 @@ const BookingCard = ({
               </div>
             </div>
 
-            <div className="w-full flex justify-center items-center gap-4">
-              <span className="w-full h-[1px] block bg-black/20"></span>
+            <div className="w-full flex justify-center items-center flex-col sm:flex-row gap-4">
+              <span className="w-full h-[1px] hidden sm:block bg-black/20"></span>
+              <span className="w-[1px] h-[50px] flex sm:hidden bg-black/20"></span>
               <div className="w-4/12 flex items-center justify-center flex-col gap-1">
                 <span className="text-sm flex items-center gap-1">
                   {numberOfSeats} Seats
@@ -70,10 +71,11 @@ const BookingCard = ({
                   {ticketId.travelCompany}
                 </span>
               </div>
-              <span className="w-full h-[1px] block bg-black/20"></span>
+              <span className="w-full h-[1px] hidden sm:block bg-black/20"></span>
+              <span className="w-[1px] h-[50px] flex sm:hidden bg-black/20"></span>
             </div>
 
-            <div className="w-3/12 flex items-center flex-col gap-2">
+            <div className="w-3/12 flex items-center flex-col gap-2 text-center">
               <PlaneLanding className="w-4 h-4 text-green-500" />
               <div className="flex flex-col items-center">
                 <span className="text-sm">Arrival</span>
