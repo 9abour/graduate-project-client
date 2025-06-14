@@ -11,6 +11,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <title>Travel Booking</title>
+        <link rel="icon" href="/icon.ico" />
+      </head>
       <body className="h-full sm:min-h-screen bg-background font-sans antialiased">
         <Providers>
           <MainNav />

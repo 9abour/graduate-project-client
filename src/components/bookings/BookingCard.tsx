@@ -67,7 +67,7 @@ const BookingCard = ({
                   <MdOutlineWheelchairPickup />
                 </span>
                 <IoAirplane />
-                <span className="text-sm text-gradient">
+                <span className="text-sm text-gradient text-center">
                   {ticketId.travelCompany}
                 </span>
               </div>

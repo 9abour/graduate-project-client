@@ -45,11 +45,6 @@ export function MainNav() {
         active: pathname === '/',
       },
       {
-        href: '/about-us',
-        label: 'About Us',
-        active: pathname === '/about-us',
-      },
-      {
         href: '/search',
         label: 'Search Tickets',
         active: pathname === '/search',
@@ -106,6 +101,11 @@ export function MainNav() {
       return [
         ...commonRoutes,
         {
+          href: '/about-us',
+          label: 'About Us',
+          active: pathname === '/about-us',
+        },
+        {
           href: '/auth/login',
           label: 'Login',
           active: pathname === '/auth/login',
@@ -139,7 +139,7 @@ export function MainNav() {
             </span>
           </Link>
 
-          <div className="gap-4 hidden sm:flex items-center">
+          <div className="hidden sm:flex items-center">
             {routes.map((route) => (
               <Link
                 key={route.href}

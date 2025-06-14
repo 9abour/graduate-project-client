@@ -76,7 +76,9 @@ const TicketCard = ({
                   <MdOutlineWheelchairPickup />
                 </span>
                 <IoAirplane className="rotate-90 sm:rotate-0" />
-                <span className="text-sm text-gradient">{travelCompany}</span>
+                <span className="text-sm text-gradient text-center">
+                  {travelCompany}
+                </span>
               </div>
               <span className="w-full h-[1px] hidden sm:block bg-black/20"></span>
               <span className="w-[1px] h-[50px] flex sm:hidden bg-black/20"></span>

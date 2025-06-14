@@ -14,7 +14,7 @@ body {
 
 @layer utilities {
   .container {
-    @apply mx-auto max-w-[1360px] w-full px-4;
+    @apply mx-auto max-w-[1460px] w-full px-4;
   }
 
   .flex-jc-c {
