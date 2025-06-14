@@ -25,8 +25,8 @@ const HeroForm = () => {
     to: '',
     minPrice: '',
     maxPrice: '',
-    departureDate: '',
-    arrivalDate: '',
+    departureTime: '',
+    arrivalTime: '',
   });
 
   const handleReverseLocations = () => {
@@ -103,7 +103,7 @@ const HeroForm = () => {
           <Popover>
             <PopoverTrigger asChild>
               <div className="w-full">
-                <label htmlFor="departureDate">Departure Date</label>
+                <label htmlFor="departureTime">Departure Date</label>
 
                 <button className="w-full flex items-center border-2 border-white/20 rounded-md mt-1">
                   <div className="w-[45px] h-[45px] flex items-center justify-center border-r-2 py-2 border-white/20">
@@ -111,8 +111,8 @@ const HeroForm = () => {
                   </div>
 
                   <span className="mx-2">
-                    {searchParams.departureDate
-                      ? format(searchParams.departureDate, 'PPP')
+                    {searchParams.departureTime
+                      ? format(searchParams.departureTime, 'PPP')
                       : 'Pick a date'}
                   </span>
                 </button>
@@ -121,12 +121,12 @@ const HeroForm = () => {
             <PopoverContent className="w-auto p-0" align="start">
               <Calendar
                 mode="single"
-                selected={new Date(searchParams.departureDate || '')}
+                selected={new Date(searchParams.departureTime || '')}
                 onSelect={(date) =>
                   date &&
                   setSearchParams({
                     ...searchParams,
-                    departureDate: String(date),
+                    departureTime: String(date),
                   })
                 }
                 initialFocus
@@ -145,8 +145,8 @@ const HeroForm = () => {
                   </div>
 
                   <span className="mx-2">
-                    {searchParams.arrivalDate
-                      ? format(searchParams.arrivalDate, 'PPP')
+                    {searchParams.arrivalTime
+                      ? format(searchParams.arrivalTime, 'PPP')
                       : 'Pick a date'}
                   </span>
                 </button>
@@ -155,12 +155,12 @@ const HeroForm = () => {
             <PopoverContent className="w-auto p-0" align="start">
               <Calendar
                 mode="single"
-                selected={new Date(searchParams.arrivalDate || '')}
+                selected={new Date(searchParams.arrivalTime || '')}
                 onSelect={(date) =>
                   date &&
                   setSearchParams({
                     ...searchParams,
-                    arrivalDate: String(date),
+                    arrivalTime: String(date),
                   })
                 }
                 initialFocus

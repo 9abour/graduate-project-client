@@ -21,13 +21,22 @@ const Footer = () => {
               reliable and affordable travel service.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="hover:text-red-400 transition-colors">
+              <Link
+                href="https://www.facebook.com/9abour"
+                className="hover:text-red-400 transition-colors"
+              >
                 <Facebook size={20} />
               </Link>
-              <Link href="#" className="hover:text-red-400 transition-colors">
+              <Link
+                href="https://x.com/9abour"
+                className="hover:text-red-400 transition-colors"
+              >
                 <Twitter size={20} />
               </Link>
-              <Link href="#" className="hover:text-red-400 transition-colors">
+              <Link
+                href="https://www.instagram.com/_9abour"
+                className="hover:text-red-400 transition-colors"
+              >
                 <Instagram size={20} />
               </Link>
             </div>
@@ -46,14 +55,6 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/destinations"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  Popular Destinations
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/bookings"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
@@ -62,18 +63,10 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/about"
+                  href="/about-us"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/faq"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  FAQs
                 </Link>
               </li>
             </ul>

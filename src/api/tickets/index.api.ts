@@ -5,8 +5,8 @@ const getTickets = async (params: {
   to?: string;
   minPrice?: string;
   maxPrice?: string;
-  departureDate?: string;
-  arrivalDate?: string;
+  departureTime?: string;
+  arrivalTime?: string;
 }) => {
   const searchParams = new URLSearchParams();
 

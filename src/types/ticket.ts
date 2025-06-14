@@ -16,7 +16,7 @@ export interface TicketFilters {
   to?: string;
   minPrice?: number;
   maxPrice?: number;
-  departureDate?: string;
+  departureTime?: string;
   travelCompany?: string;
 }
 

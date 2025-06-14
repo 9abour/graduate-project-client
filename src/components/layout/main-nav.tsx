@@ -45,6 +45,11 @@ export function MainNav() {
         active: pathname === '/',
       },
       {
+        href: '/about-us',
+        label: 'About Us',
+        active: pathname === '/about-us',
+      },
+      {
         href: '/search',
         label: 'Search Tickets',
         active: pathname === '/search',

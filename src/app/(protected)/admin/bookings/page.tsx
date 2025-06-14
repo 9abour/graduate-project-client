@@ -3,6 +3,10 @@ import PageLayout from '@/components/layout/page-layout';
 import ExportButton from '@/components/ui/export-button';
 import React from 'react';
 
+export const metadata = {
+  title: 'Bookings Analytics',
+};
+
 const page = () => {
   return (
     <PageLayout>
