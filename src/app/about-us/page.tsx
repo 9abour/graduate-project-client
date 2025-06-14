@@ -73,13 +73,13 @@ export default function AboutPage() {
       {/* Mission Section */}
       <section className="py-16 bg-gray-50">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient leading-20">
             Our Mission
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-2xl font-semibold mb-4 main-title-white">
+              <h3 className="text-2xl font-semibold mb-4 main-title-white leading-20">
                 Simplifying Travel Booking
               </h3>
               <p className="text-gray-600 dark:text-gray-600 mb-6">
@@ -108,7 +108,7 @@ export default function AboutPage() {
       {/* Technology Section */}
       <section className="py-20">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient leading-20">
             Our Technology Stack
           </h2>
 
@@ -140,7 +140,7 @@ export default function AboutPage() {
       {/* Team Section */}
       <section className="py-16 bg-gray-50">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient leading-20">
             Meet The Team
           </h2>
 
